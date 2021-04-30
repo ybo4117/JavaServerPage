@@ -14,7 +14,7 @@
 	<div>제목 : ${data.title}</div>
 	<div>작성일 : ${data.regdt}</div>
 
-	<div>내용 : ${data.ctnt}</div>
+	<div>내용 :${data.ctnt}</div>
 
 </body>
 </html>
