@@ -8,6 +8,17 @@
 </head>
 <body>
 	<h1>디테일</h1>
+	
+	<div><a href="/del3?iboard=${param.iboard}">삭제</a></div>
+	<div><a href="/mod3?iboard=${param.iboard}">수정</a></div>
+	 
+	 <!-- 
+	 <form action="/del3" method="get">
+	 	<input type="hidden" name ="iboard" value="${param.iboard}">
+	 	<button>삭제</button>
+	 </form>
+	 -->
+	 
 	<div>
 		<a href="/list3">리스트</a>
 	</div>

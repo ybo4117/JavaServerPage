@@ -35,6 +35,7 @@ table, th, td {
 
 			<c:forEach items="${list}" var="item">
 				<tr class="record" onclick="moveToDetail(${item.iboard})">
+				<!-- a태그로 한번에 안보내져서 하나하나 줘야되기떄문에 모든 정보를 한번에 보낼려고 onclick을 썼다 -->
 					<td>${item.iboard}</td>
 					<td>${item.title}</td>
 					<td>${item.regdt}</td>
@@ -47,8 +48,7 @@ table, th, td {
 	<script>
 		function moveToDetail(iboard) {
 			//console.log('iboard : %d', iboard);
-			location.href='/detail3?iboard=' + iboard;
-		}
+			location.href='/detail3?iboard=' + iboard;}
 	</script>
 
 </body>

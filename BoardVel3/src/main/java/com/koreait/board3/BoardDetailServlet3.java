@@ -12,7 +12,7 @@ public class BoardDetailServlet3 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String iboard = request.getParameter("iboard");		
+		String iboard = request.getParameter("iboard");	
 		BoardVO3 vo = new BoardVO3();
 		
 		int intIboard = Integer.parseInt(iboard);	

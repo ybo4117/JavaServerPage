@@ -2,6 +2,7 @@ package com.koreait.board3;
 
 public class BoardVO3 {
 	private int iboard;
+	private int iuser;
 	private String title;
 	private String ctnt;
 	private String regdt;
@@ -29,4 +30,11 @@ public class BoardVO3 {
 	public void setRegdt(String regdt) {
 		this.regdt = regdt;
 	}
+	public int getIuser() {
+		return iuser;
+	}
+	public void setIuser(int iuser) {
+		this.iuser = iuser;
+	}
+	
 }
