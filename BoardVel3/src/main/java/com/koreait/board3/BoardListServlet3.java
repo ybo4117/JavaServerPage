@@ -14,12 +14,23 @@ public class BoardListServlet3 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<BoardVO3> list = BoardDAO.selBoardList(); // 아규먼트값이 없다는건 다보내겠다
+		String num = request.getParameter("num");
+		System.out.println(num);
+		
+		int intNum = 0;
+		if(num != null) {
+			intNum= Integer.parseInt(num);
+		}
+		
+		List<BoardVO3> list = BoardDAO.selBoardList(intNum); // 아규먼트값이 없다는건 다보내겠다
 		request.setAttribute("list", list);
+		
 		
 		String jsp = "WEB-INF/view/list3.jsp";
 		request.getRequestDispatcher(jsp).forward(request, response);
 		// 연습중입니다
 	}
-
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+	}
 }

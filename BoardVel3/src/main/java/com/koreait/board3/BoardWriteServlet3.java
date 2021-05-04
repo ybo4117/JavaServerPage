@@ -14,7 +14,9 @@ public class BoardWriteServlet3 extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String jsp = "WEB-INF/view/write3.jsp";
+			
 		request.getRequestDispatcher(jsp).forward(request, response);
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

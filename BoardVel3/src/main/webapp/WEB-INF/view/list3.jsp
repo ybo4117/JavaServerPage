@@ -19,6 +19,10 @@ table, th, td {
 .record:hover {
 	background-color: #ecf0f1;
 }
+
+.desc {
+	cursor: pointer;
+}
 </style>
 </head>
 <body>
@@ -26,16 +30,17 @@ table, th, td {
 		<a href="/write3">글쓰기</a>
 	</div>
 	<div>
+
 		<table>
 			<tr>
-				<th>no</th>
-				<th>제목</th>
-				<th>작성일</th>
+				<td><input type="button" name="abc" onclick="moveToDESC()">no</td>
+				<td>제목</td>
+				<td>작성일</td>
 			</tr>
 
 			<c:forEach items="${list}" var="item">
-				<tr class="record" onclick="moveToDetail(${item.iboard})">
-				<!-- a태그로 한번에 안보내져서 하나하나 줘야되기떄문에 모든 정보를 한번에 보낼려고 onclick을 썼다 -->
+				<tr class="record" onclick="moveToDetail(${item.iboard});">
+					<!-- a태그로 한번에 안보내져서 하나하나 줘야되기떄문에 모든 정보를 한번에 보낼려고 onclick을 썼다 -->
 					<td>${item.iboard}</td>
 					<td>${item.title}</td>
 					<td>${item.regdt}</td>
@@ -46,9 +51,31 @@ table, th, td {
 	</div>
 
 	<script>
+		var num = 0;
 		function moveToDetail(iboard) {
 			//console.log('iboard : %d', iboard);
-			location.href='/detail3?iboard=' + iboard;}
+			location.href='/detail3?iboard=' + iboard;
+			}
+		/*
+		function moveToDESC(){
+			if(num == 0){
+			 num++;
+			 location.href='/list3';	
+			}			
+			else{
+			var val= ${param.num};
+			}			
+			
+			if(val ==1){
+				val = 0;
+			}else{
+				val = 1;
+			}
+			
+			location.href='/list3?num=' + val;			
+		}
+		*/
+		
 	</script>
 
 </body>

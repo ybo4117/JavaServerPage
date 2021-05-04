@@ -7,17 +7,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class DBUtils {
-	public static void main(String[] args) {
-		try {
-			getCon();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+//	public static void main(String[] args) {
+//		try {
+//			getCon();
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
 
 	public static Connection getCon() throws Exception {
-		final String DB_NAME ="boardver3";
+
+		final String DB_NAME = "boardver3";
 		final String DRIVER = "com.mysql.cj.jdbc.Driver";
 		final String URL = "jdbc:mysql://localhost:3308/" + DB_NAME;
 		final String USER_NAME = "root";
@@ -29,21 +30,34 @@ public class DBUtils {
 
 		return con;
 	}
+
 	public static void close(Connection con, PreparedStatement ps) {
 		close(con, ps, null);
 	}
 
 	public static void close(Connection con, PreparedStatement ps, ResultSet rs) {
 		if (rs != null) {
-			try { rs.close(); } catch (SQLException e) { e.printStackTrace(); }
+			try {
+				rs.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 
 		if (ps != null) {
-			try { ps.close(); } catch (SQLException e) { e.printStackTrace(); }
+			try {
+				ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 
 		if (con != null) {
-			try { con.close(); } catch (SQLException e) { e.printStackTrace(); }
+			try {
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }
