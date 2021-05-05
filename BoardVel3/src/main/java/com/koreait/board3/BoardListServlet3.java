@@ -21,7 +21,7 @@ public class BoardListServlet3 extends HttpServlet {
 		if(num != null) {
 			intNum= Integer.parseInt(num);
 		}
-		
+		// 보낼때 아예없는 값을 먼저 보내면 따로 받을수 있다
 		List<BoardVO3> list = BoardDAO.selBoardList(intNum); // 아규먼트값이 없다는건 다보내겠다
 		request.setAttribute("list", list);
 		
