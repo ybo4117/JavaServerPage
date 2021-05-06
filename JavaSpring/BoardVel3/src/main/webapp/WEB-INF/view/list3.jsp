@@ -52,22 +52,29 @@ table, th, td {
 
 	<script>
 		var num = 0;
-		var val = '${param.num}';
-		// param.num으로 받을 필요가 없었다 그냥 '' < 빈값으로 받아서 값을 넘겨주기만 했으면 됬다	
 		function moveToDetail(iboard) {
-			//console.log('iboard : %d', iboard);			
+			//console.log('iboard : %d', iboard);
 			location.href='/detail3?iboard=' + iboard;
 			}
-		function moveToDESC(){			
+		/*
+		function moveToDESC(){
+			if(num == 0){
+			 num++;
+			 location.href='/list3';	
+			}			
+			else{
+			var val= ${param.num};
+			}			
 			
-			if(val == 1){
+			if(val ==1){
 				val = 0;
 			}else{
 				val = 1;
-			}			
-			location.href='/list3?num=' + val;
+			}
 			
+			location.href='/list3?num=' + val;			
 		}
+		*/
 		
 	</script>
 

@@ -63,8 +63,7 @@ public class BoardDAO {
 
 			while (rs.next()) {
 				BoardVO3 vo = new BoardVO3();
-				int num1 = rs.getInt("iboard");
-				vo.setIboard(num1);
+				vo.setIboard(rs.getInt("iboard"));
 				vo.setTitle(rs.getString("title"));
 				vo.setRegdt(rs.getString("regdt"));
 //				vo.setIboard(rs.getInt(1));

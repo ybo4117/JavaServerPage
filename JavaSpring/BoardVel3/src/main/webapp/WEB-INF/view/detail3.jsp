@@ -26,8 +26,6 @@
 	<div>작성일 : ${data.regdt}</div>
 
 	<div>내용 :${data.ctnt}</div>
-	
-	
-	
+
 </body>
 </html>
