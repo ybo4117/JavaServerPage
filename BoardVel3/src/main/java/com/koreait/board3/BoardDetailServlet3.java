@@ -20,6 +20,9 @@ public class BoardDetailServlet3 extends HttpServlet {
 		BoardVO3 data = BoardDAO.selBoard(intIboard);		
 		request.setAttribute("data", data);		
 		
+		//TODO 조회수 처리시 이쪽에서 받아서 DAO보내주고 값을 받아서
+		// setAttribute로 값을 저장해서 보낸다.
+		
 		
 		String jsp = "WEB-INF/view/detail3.jsp";
 		request.getRequestDispatcher(jsp).forward(request, response);
