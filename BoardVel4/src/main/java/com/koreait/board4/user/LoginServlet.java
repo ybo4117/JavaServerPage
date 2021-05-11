@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.koreait.board4.MyUtils;
 
@@ -17,6 +18,13 @@ public class LoginServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		HttpSession hs = request.getSession();
+		UserVO loginUser = (UserVO) hs.getAttribute("loginUser");
+		if(loginUser != null) {
+			response.sendRedirect("/board/list");
+			return;
+		}
+		
 		MyUtils.openJSP("user/login", request, response);
 
 	}
@@ -32,8 +40,13 @@ public class LoginServlet extends HttpServlet {
 
 		int result = UserDAO.loginUser(u_vo);
 		System.out.println(result);
-
-		if (result == 1) {
+		
+		if (result == 1) { // 로그인 성공
+			HttpSession hs = request.getSession();
+			u_vo.setUpw(null);
+			hs.setAttribute("loginUser", u_vo);
+			// u_vo가 가리키는 UserVo객체는 (iuser, u_id, u_nm값만 담고 있다.) 
+			
 			response.sendRedirect("/board/list");
 			return;
 		}

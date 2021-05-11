@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import com.koreait.board4.DBUtils;
 
 public class UserDAO {
@@ -49,7 +51,12 @@ public class UserDAO {
 
 			if (rs.next()) { // 아이디가 있는경우
 				String dbPw = rs.getString("u_pw");
-				if (dbPw.equals(param.getUpw())) { // 비밀번호가 데이터베이스에 있는 비밀번호와 같을 경우 
+
+				if (BCrypt.checkpw(param.getUpw(), dbPw)) { // 암호화된 비밀번호가 설정한비밀번와 같을때
+					param.setIuser(rs.getInt("i_user"));
+					param.setUnm(rs.getString("u_nm"));
+					// rs에 있는 i_user의 값과 u_nm의 값을 보내는 것
+					
 					return 1;
 				} else { // 비밀번호가 다를경우
 					return 3;
@@ -62,7 +69,7 @@ public class UserDAO {
 			return 0;
 		} finally {
 			DBUtils.close(con, ps, rs);
-		}		
+		}
 	}
 
 }
