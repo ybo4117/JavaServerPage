@@ -29,7 +29,7 @@ public class ListServlet extends HttpServlet {
 			return;
 		}
 		
-		List<BoardVO> list = BoardDAO.selBoard(); // 아규먼트값이 없다는건 다보내겠다
+		List<BoardVO> list = BoardDAO.selBoardList(); // 아규먼트값이 없다는건 다보내겠다
 		request.setAttribute("list", list);
 		
 		

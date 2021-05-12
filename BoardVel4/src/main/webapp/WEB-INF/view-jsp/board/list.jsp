@@ -9,8 +9,8 @@
 </head>
 <body>
 	<div>로그인 성공</div>
-	<div>${loginUser.unm}님(
-		ID : ${loginUser.uid} ) 환영합니다. <a href="/user/logout">Logout</a>
+	<div>${loginUser.unm}님(ID
+		: ${loginUser.uid} ) 환영합니다. <a href="/user/logout">Logout</a>
 	</div>
 
 	<div>
@@ -25,8 +25,7 @@
 				<th>작성일</th>
 			</tr>
 			<c:forEach items="${list}" var="item">
-				<!-- a태그로 한번에 안보내져서 하나하나 줘야되기떄문에 모든 정보를 한번에 보낼려고 onclick을 썼다 -->
-				<tr>
+				<tr onclick="moveToDetail(${item.iboard})">
 					<td>${item.iboard}</td>
 					<td>${item.title}</td>
 					<td>${item.unm}</td>
@@ -36,6 +35,11 @@
 
 		</table>
 	</div>
+	<script>
+		function moveToDetail(iboard) {
+			location.href="detail?iboard=" + iboard;
+		}
+	</script>
 
 
 </body>
