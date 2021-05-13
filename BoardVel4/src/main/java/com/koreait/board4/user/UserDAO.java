@@ -56,7 +56,7 @@ public class UserDAO {
 					param.setIuser(rs.getInt("i_user"));
 					param.setUnm(rs.getString("u_nm"));
 					// rs에 있는 i_user의 값과 u_nm의 값을 보내는 것
-					
+
 					return 1;
 				} else { // 비밀번호가 다를경우
 					return 3;
@@ -70,6 +70,33 @@ public class UserDAO {
 		} finally {
 			DBUtils.close(con, ps, rs);
 		}
+	}
+
+	public static boolean checkId(UserVO param) {
+		boolean result = false;
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		String sql = "SELECT * FROM t_user WHERE u_id = ?";
+
+		try {
+			con = DBUtils.getCon();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, param.getUid());
+			rs = ps.executeQuery();
+
+			if (rs.next()) {
+				result = true;
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBUtils.close(con, ps, rs);
+		}
+
+		return result;
 	}
 
 }

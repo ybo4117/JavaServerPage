@@ -26,7 +26,7 @@ public class ModServlet extends HttpServlet {
 		String title = request.getParameter("title");
 		String ctnt = request.getParameter("ctnt");
 		int iboard = MyUtils.getParamInt("iboard", request);
-		int iuesr = MyUtils.getLoginUserPk(request);
+		int iuesr = MyUtils.getLoginUserPk("loginUser",request);
 		
 		BoardVO vo = new BoardVO();
 		vo.setTitle(title);

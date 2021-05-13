@@ -17,10 +17,8 @@ public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		HttpSession hs = request.getSession();
-		UserVO loginUser = (UserVO) hs.getAttribute("loginUser");
-		if(loginUser != null) {
+			throws ServletException, IOException {		
+		if(MyUtils.getLoginUser("loginUser",request) != null) {
 			response.sendRedirect("/board/list");
 			return;
 		}

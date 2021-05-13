@@ -36,7 +36,7 @@ public class WriteServlet extends HttpServlet {
 		// 글쓴이의 pk값 받아오기
 		// 서버 세션저장되어있는 i_user의 값을 받아와야 안전하다. <jsp에 메모리값으로 보내면 문제가 생길 수 있다.>
 		
-		int iuser = MyUtils.getLoginUserPk(request);
+		int iuser = MyUtils.getLoginUserPk("loginUser",request);
 		
 		BoardVO vo = new BoardVO();
 		vo.setTitle(title);

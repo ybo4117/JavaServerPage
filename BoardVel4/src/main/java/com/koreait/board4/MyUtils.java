@@ -10,21 +10,23 @@ import javax.servlet.http.HttpSession;
 import com.koreait.board4.user.UserVO;
 
 public class MyUtils {
+	public static void errMsg(String errMsgName, String errMsg, HttpServletRequest request) {		
+		request.setAttribute(errMsgName, errMsg);
+	}
 
-	public static int getLoginUserPk(HttpServletRequest request) {
+	public static int getLoginUserPk(String sesNm,HttpServletRequest request) {
 		if (request == null) {
 			return 0;
 		}
-		return getLoginUser(request).getIuser();
+		return getLoginUser(sesNm,request).getIuser();
 	}
 
-	public static UserVO getLoginUser(HttpServletRequest request) {
+	public static UserVO getLoginUser(String sesNm,HttpServletRequest request) {
 		if (request == null) {
 			return null;
 		}
 		HttpSession hs = request.getSession();
-		return (UserVO) hs.getAttribute("loginUser");
-
+		return (UserVO) hs.getAttribute(sesNm);
 	}
 
 	public static int getParamInt(String key, HttpServletRequest request) {
