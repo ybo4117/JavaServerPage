@@ -34,7 +34,30 @@ public class UserJoinServlet extends HttpServlet {
 		param.setUpw(hashedUpw);
 		param.setUnm(u_nm);
 		param.setGender(gender);
+		boolean result = UserDAO.checkId(param);
+		System.out.println("result : " + result);
+		String errMsg = null;		
 		
+		if(u_id.isEmpty()) {
+			MyUtils.errMsg("errMsg", "아이디를 입력해주세요", request);
+			doGet(request, response);
+			return;
+		} else if(u_pw.isEmpty()) {
+			MyUtils.errMsg("errMsg", "비밀번호를 입력해주세요.", request);			
+			doGet(request, response);
+			return;
+		} else if(u_nm.isEmpty()){
+			MyUtils.errMsg("errMsg", "이름을 입력해주세요", request);
+			doGet(request, response);
+			return;
+		}
+		
+		if (result) { // 중복된 아이디값이 있을때
+			errMsg = "중복된 아이디입니다.";
+			request.setAttribute("errMsg", errMsg);
+			doGet(request, response);
+			return;
+		}
 		UserDAO.insUser(param);
 		
 		response.sendRedirect("userLogin");		

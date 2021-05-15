@@ -68,5 +68,32 @@ public class UserDAO {
 		
 		return result;		
 	}
+	
+	public static boolean checkId(UserVO param) {
+		boolean result = false;
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		String sql = "SELECT * FROM t_user WHERE u_id = ?";
+
+		try {
+			con = DBUtils.getCon();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, param.getUid());
+			rs = ps.executeQuery();
+
+			if (rs.next()) {
+				result = true;
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBUtils.close(con, ps, rs);
+		}
+
+		return result;
+	}
 
 }
