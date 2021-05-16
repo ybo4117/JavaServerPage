@@ -52,5 +52,7 @@ public class UserLoginServlet extends HttpServlet {
 		}
 		
 		doGet(request, response);
+		// 깃허브 연습
+		
 	}
 }
