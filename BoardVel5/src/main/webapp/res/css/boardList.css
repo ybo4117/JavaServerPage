@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+.record {
+	cursor: pointer;
+}
+.record:hover {
+	background-color: #ecf0f1;
+}
+.desc {
+	cursor: pointer;
+}
