@@ -18,7 +18,7 @@ public class CmtServlet extends HttpServlet {
 		int iuser = MyUtils.getLoginUserPk("loginUser", request);
 		int icmt = MyUtils.getParamInt("icmt", request);
 		int iboard = MyUtils.getParamInt("iboard", request);
-		
+
 		CmtVO param = new CmtVO();
 		param.setIcmt(icmt);
 		param.setIuser(iuser);
@@ -32,14 +32,22 @@ public class CmtServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		int iboard = MyUtils.getParamInt("iboard", request);
+		int icmt = MyUtils.getParamInt("icmt", request);
 		String cmt = request.getParameter("cmt");
 
 		CmtVO param = new CmtVO();
-		param.setIboard(iboard);
 		param.setCmt(cmt);
 		param.setIuser(MyUtils.getLoginUserPk("loginUser", request));
 
-		CmtDAO.insCmt(param);
+		if (icmt != 0) {
+			param.setIcmt(icmt);
+			CmtDAO.updCmt(param);
+			// 수정
+		} else {
+			param.setIboard(iboard);
+			CmtDAO.insCmt(param);
+			// 등록
+		}
 
 		response.sendRedirect("detail?iboard=" + iboard);
 	}

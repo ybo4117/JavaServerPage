@@ -6,6 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>${data.title}</title>
+<style>
+	.hidden{
+		display: none;
+	}
+</style>
 <script defer src="/res/js/cmtDel.js"></script>
 </head>
 <body>
@@ -25,11 +30,22 @@
 
 	<h3>댓글</h3>
 	<div>
-		<form action="cmt" method="post">
+		<form id="insForm" action="cmt" method="post" class="">
+		<input type="hidden" name="icmt" value="0">
 		<input type="hidden" name="iboard" value="${data.iboard}">
 			<div>
 				<textarea name="cmt" placeholder="댓글내용"></textarea>
 				<input type="submit" value="댓글작성">
+			</div>
+		</form>
+		
+		<form id="updForm" action="cmt" method="post" class="hidden">
+		<input type="hidden" name="icmt" value="0">
+		<input type="hidden" name="iboard" value="${data.iboard}">
+			<div>
+				<textarea name="cmt" placeholder="댓글내용"></textarea>
+				<input type="submit" value="댓글수정">
+				<input type="button" value="수정취소" onclick="showInsForm();">
 			</div>
 		</form>
 	</div>
@@ -55,8 +71,9 @@
 				<td>${item.regdate}</td>
 				<td>
 				<c:if test="${sessionScope.loginUser.iuser == item.iuser}">
-					<input type="button" value="수정"> 
-					<button onclick="delCmt(${item.icmt}, ${requestScope.data.iboard})">삭제</button>
+					<input type="button" value="수정" onclick="updCmt(${item.icmt}, '${item.cmt.trim()}');">
+					<!-- 맨뒤쪽에 item.cmt.trim()의 trim()은 양쪽 공백을 없애는 과정이다 이게 없으면 댓글에 Enter를 치게되면 오류가난다 -->
+					<button onclick="delCmt(${item.icmt}, ${requestScope.data.iboard});">삭제</button>
 					<!-- <a href="cmt?icmt=${item.icmt}&iboard=${requestScope.data.iboard}"></a> -->
 				</c:if>
 				</td>			
