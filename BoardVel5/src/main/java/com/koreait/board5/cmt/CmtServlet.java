@@ -24,6 +24,7 @@ public class CmtServlet extends HttpServlet {
 		param.setIuser(iuser);
 
 		CmtDAO.delCmt(param);
+		// 삭제
 
 		response.sendRedirect("detail?iboard=" + iboard);
 
@@ -38,7 +39,7 @@ public class CmtServlet extends HttpServlet {
 		CmtVO param = new CmtVO();
 		param.setCmt(cmt);
 		param.setIuser(MyUtils.getLoginUserPk("loginUser", request));
-
+		// 하나의 서블릿안에 총 3가지의 기능을 실행한다 (삭제 ,수정 , 등록)
 		if (icmt != 0) {
 			param.setIcmt(icmt);
 			CmtDAO.updCmt(param);
