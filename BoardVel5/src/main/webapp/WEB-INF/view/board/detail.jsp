@@ -6,9 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <title>${data.title}</title>
+<link rel = "stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <style>
 	.hidden{
 		display: none;
+	}
+	.fa-heart{
+		color : red ;
 	}
 </style>
 <script defer src="/res/js/cmtDel.js"></script>
@@ -22,12 +26,23 @@
 				href="mod?iboard=${param.iboard}">수정</a>
 		</div>
 	</c:if>
-
-	<h1>${data.title}</h1>
+	
+	<div><a href="list">리스트로 돌아가기</a></div>
+	
+	<h1>${data.title}
+		<c:if test="${data.isFav eq 0}">
+		<!-- eq 적어도 되고 == 적어도됨 -->
+		<a href="fav?iboard=${param.iboard}&fav=1"><i class="far fa-heart"></i></a>
+		</c:if>
+		<c:if test="${data.isFav == 1}">
+		<a href="fav?iboard=${param.iboard}&fav=0"><i class="fas fa-heart"></i></a>
+		</c:if>
+	</h1>
 	<div>글번호 : ${data.iboard}</div>
 	<div>글쓴이 : ${data.unm} | 작성일 : ${data.regdt}</div>
 	<div>${data.ctnt}</div>
-
+	
+	
 	<h3>댓글</h3>
 	<div>
 		<form id="insForm" action="cmt" method="post" class="">
@@ -49,6 +64,7 @@
 			</div>
 		</form>
 	</div>
+
 
 	<div>
 		<table>
