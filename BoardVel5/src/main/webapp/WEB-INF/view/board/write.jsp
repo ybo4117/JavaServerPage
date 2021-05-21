@@ -19,7 +19,7 @@
 			<div>
 				내용 : 
 				<div><textarea name="ctnt" placeholder="CONTENT_TEXT"></textarea></div>			
-			</div>
+			</div> 
 			
 			<div>
 				<input type="submit" value="WRITE">
