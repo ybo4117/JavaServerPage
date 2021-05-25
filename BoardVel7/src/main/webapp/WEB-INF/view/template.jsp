@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/res/css/common.css">
+<script defer src="/res/js/common.js"></script>
 <title>${requestScope.title}</title>
 <!-- request에다가 title이라는 값으로 페이지 이름을 넣는다 -->
 </head>
