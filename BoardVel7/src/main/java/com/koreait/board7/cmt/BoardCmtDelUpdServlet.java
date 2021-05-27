@@ -13,28 +13,38 @@ import com.koreait.board7.MyUtils;
 public class BoardCmtDelUpdServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	//댓글 삭제
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	// 댓글 삭제
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		int icmt = MyUtils.getParamInt("icmt", request);
 		int iuser = MyUtils.getLoginUserPk("loginUser", request);
-		
+
 		BoardCmtEntity param = new BoardCmtEntity();
 		param.setIcmt(icmt);
 		param.setIuser(iuser);
-		
-		int result = BoardCmtDAO.delBoardCmt(param);
-		
-		response.getWriter()
-		.append("{")
-		.append("\"result\":")
-		.append(String.valueOf(result))
-		.append("}")
-		.flush();		
-	}
-	
-	//댓글 수정
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		int result = BoardCmtDAO.delBoardCmt(param);
+
+		response.getWriter().append("{").append("\"result\":").append(String.valueOf(result)).append("}").flush();
+	}
+
+	// 댓글 수정
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		int icmt = MyUtils.getParamInt("icmt", request);
+		String cmt = request.getParameter("cmt");
+
+		System.out.println("icmt :" + icmt);
+		System.out.println("cmt :" + cmt);
+		
+		BoardCmtEntity param = new BoardCmtEntity();
+		param.setIcmt(icmt);
+		param.setCmt(cmt);
+		
+		int result = BoardCmtDAO.UpdBoardCmt(param);
+		
+		response.getWriter().append("{").append("\"result\":").append(String.valueOf(result)).append("}").flush();
+		
 	}
 
 }

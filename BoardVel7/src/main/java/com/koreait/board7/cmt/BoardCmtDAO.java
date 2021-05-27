@@ -89,4 +89,28 @@ public class BoardCmtDAO {
 		return result;
 	}
 
+	public static int UpdBoardCmt(BoardCmtEntity param) {
+		int result = 0;
+		Connection con = null;
+		PreparedStatement ps = null;
+		
+		String sql = "UPDATE t_board_cmt SET cmt = ? WHERE icmt = ?";
+		
+		try {
+			con = DBUtils.getCon();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, param.getCmt());
+			ps.setInt(2, param.getIcmt());
+			
+			result = ps.executeUpdate();			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBUtils.close(con, ps);
+		}
+		
+		
+		return result;
+	}
+
 }

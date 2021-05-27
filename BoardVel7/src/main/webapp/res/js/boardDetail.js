@@ -1,5 +1,6 @@
 var cmtFrmElem = document.querySelector('#cmtFrm');
 var cmtListElem = document.querySelector('#cmtList');
+var cmtModModalElem = document.querySelector('#modal');
 
 function regCmt() {
 	var cmtVal = cmtFrmElem.cmt.value;
@@ -54,7 +55,7 @@ function getListAjax() {
 		});
 }
 
-function makeCmtElemList(data) {	
+function makeCmtElemList(data) {
 
 	cmtListElem.innerHTML = '';
 	var tableElem = document.createElement('table');
@@ -95,14 +96,22 @@ function makeCmtElemList(data) {
 		if (parseInt(loginUserPk) === item.iuser) {
 			var delBtn = document.createElement('button');
 			var modBtn = document.createElement('button');
-			
+
 			// 삭제 버튼 클릭시 delAjax 호출
-			delBtn.addEventListener('click',function(){
-				
-				delAjax(item.icmt);
+			delBtn.addEventListener('click', function() {
+
+				if (confirm('삭제하시겠습니까?')) {
+					delAjax(item.icmt);
+				}
 			});
-			
-			
+
+			// 수정 버튼 클릭시 
+			modBtn.addEventListener('click', function() {
+				// 댓글 수정 모달창 띄우기
+				openModModal(item);
+
+			});
+
 			delBtn.innerText = '삭제';
 			modBtn.innerText = '수정';
 
@@ -121,25 +130,72 @@ function makeCmtElemList(data) {
 
 }
 
-function delAjax(icmt){
+function delAjax(icmt) {
 	fetch('cmtDelUpd?icmt=' + icmt)
-	.then(function(res){
-		return res.json();
-	})
-	.then(function(data){
-		console.log(data);
-		
-		switch(data.result){
-			case 0:
-				alert('댓글 삭제를 실패하였습니다.');
-			break;
-			case 1:
-				alert('댓글 삭제 성공 !!');
-				getListAjax();
-			break;
-		}
-	});
-	
+		.then(function(res) {
+			return res.json();
+		})
+		.then(function(data) {
+			console.log(data);
+
+			switch (data.result) {
+				case 0:
+					alert('댓글 삭제를 실패하였습니다.');
+					break;
+				case 1:
+					alert('댓글 삭제 성공 !!');
+					getListAjax();
+					break;
+			}
+		});
+
+}
+
+function modAjax() {
+	var cmtModFrmElem = document.querySelector('#cmtModFrm');
+	var param = {
+		icmt: cmtModFrmElem.icmt.value,
+		cmt: cmtModFrmElem.cmt.value
+	}
+
+	const init = {
+		method: 'POST',
+		body: new URLSearchParams(param)
+	};
+
+	fetch('cmtDelUpd', init)
+		.then(function(res) {
+			return res.json();
+		})
+		.then(function(myJson) {
+			console.log(myJson);
+			
+			switch (myJson.result) {
+				case 0:
+					alert('수정 실패!');
+					break;
+				case 1:
+					alert('수정 성공!');
+					getListAjax();
+					closeModModal();
+					break;
+			}
+		});
+}
+
+function openModModal({ icmt, cmt }) {
+	cmtModModalElem.className = '';
+
+	console.log('icmt : ' + icmt);
+	console.log('cmt : ' + cmt);
+
+	var cmtModFrmElem = document.querySelector('#cmtModFrm');
+	cmtModFrmElem.icmt.value = icmt;
+	cmtModFrmElem.cmt.value = cmt;
+}
+
+function closeModModal() {
+	cmtModModalElem.className = 'displayNone';
 }
 
 getListAjax(); // 이 파일이 임포트되면 함수 1회 호출!!

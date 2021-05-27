@@ -29,3 +29,5 @@ section {
 .colorRed {
 	color: red;
 }
+
+.displayNone { display: none !important; }
