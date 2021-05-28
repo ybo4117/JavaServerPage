@@ -2,6 +2,12 @@ var cmtFrmElem = document.querySelector('#cmtFrm');
 var cmtListElem = document.querySelector('#cmtList');
 var cmtModModalElem = document.querySelector('#modal');
 
+function enterKey(){
+	if(window.event.keyCode == 13){
+		regCmt();
+	}
+}
+
 function regCmt() {
 	var cmtVal = cmtFrmElem.cmt.value;
 

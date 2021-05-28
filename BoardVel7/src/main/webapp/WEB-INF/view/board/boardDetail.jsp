@@ -22,12 +22,12 @@
 	<c:out value="${requestScope.data.ctnt}" />
 </div>
 
-
+ 
 <c:if test="${loginUser.iuser != null}">
 	<div>
 		<form id="cmtFrm" onsubmit="return false;">
-			<input type="text" id="cmt">
-			<input type="button" value="댓글" onclick="regCmt();">
+			<input type="text" id="cmt" onkeyup="enterKey();">			
+			<input type="button" value="댓글" onclick="regCmt();" >		
 		</form>
 	</div>
 </c:if>

@@ -112,5 +112,7 @@ public class BoardCmtDAO {
 		
 		return result;
 	}
-
+	
+	
+	
 }
